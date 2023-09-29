@@ -12,9 +12,9 @@ export default function Login() {
     setUserData(() => ({ ...userData, [target.name]: target.value }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    createUser({ name: event.target.username.value });
+    await createUser({ name: event.target.username.value });
     navigate("/search");
   }
 

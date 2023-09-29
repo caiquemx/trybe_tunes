@@ -1,5 +1,9 @@
+import Header from "../components/Header";
 export default function Search() {
   return (
-    <div>Search</div>
-  )
+    <>
+      <Header />
+      <div>Search</div>
+    </>
+  );
 }
