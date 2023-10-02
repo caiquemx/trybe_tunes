@@ -1,5 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Login from './pages/Login'
+import Home from './pages/Home'
 import Search from './pages/Search'
 import Album from './pages/Album'
 import Favorites from './pages/Favorites'
@@ -13,6 +14,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
           <Route path="/" element={<Login/>}/>
+          <Route path="/home" element={<Home/>}/>
           <Route path="/search" element={<Search/>}/>
           <Route path="/album/:id" element={<Album/>}/>
           <Route path="/favorites" element={<Favorites/>}/>

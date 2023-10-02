@@ -15,7 +15,7 @@ export default function Login() {
   async function handleSubmit(event) {
     event.preventDefault();
     await createUser({ name: event.target.username.value });
-    navigate("/search");
+    navigate("/home");
   }
 
   return (

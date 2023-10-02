@@ -34,6 +34,11 @@ export default function SkeletonHeader() {
             </div>
           </div>
           <div className="flex w-1/3 h-full bg-blue-200 justify-center items-center">
+            <div className="w-1/4 h-1/4 animate-pulse bg-gray-100" to="/search">
+              {""}
+            </div>
+          </div>
+          <div className="flex w-1/3 h-full bg-blue-200 justify-center items-center">
             <div
               className="w-1/4 h-1/4 animate-pulse bg-gray-100"
               to="/favorites"
