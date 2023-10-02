@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function Header({ page, userName }) {
   const selected =
-    "bg-transparent text-black hover:cursor-pointer flex w-1/3 h-full bg-blue-400 justify-center items-center";
+    "bg-blue-100 text-black hover:cursor-pointer hover:bg-transparent flex w-1/3 h-full bg-blue-400 justify-center items-center";
   const style =
     "hover:bg-transparent hover:text-black hover:cursor-pointer flex w-1/3 h-full bg-blue-400 justify-center items-center";
 
@@ -36,7 +36,7 @@ export default function Header({ page, userName }) {
             </p>
             <p className="w-full ml-4 -mt-2 text-center text-lg">tunes</p>
           </div>
-          <divs
+          <div
             id="user-container"
             className="w-2/12 flex flex-row justify-between bg-white rounded-3xl items-center p-2 shadow-md shadow-gray-500"
           >
@@ -44,7 +44,7 @@ export default function Header({ page, userName }) {
               <FaUserAlt className="self-center text-white" />
             </div>
             <span className="w-full text-center">{userName}</span>
-          </divs>
+          </div>
         </div>
         <div
           id="second-half-header"

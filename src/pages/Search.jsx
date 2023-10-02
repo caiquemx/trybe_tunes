@@ -1,27 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import SkeletonHeader from "../components/SkeletonHeader";
 import Header from "../components/Header";
+import SkeletonCard from "../components/Cards/SkeletonCard";
+import AlbumCard from "../components/Cards/AlbumCard";
 import useFetchUserData from "../CustomHooks/useFetchUserData";
+import searchAlbumsAPI from "../services/searchAlbumsAPI";
 
 export default function Search() {
-  const userData = useFetchUserData();
   const [searchData, setSearchData] = useState({ searchInput: "" });
+  const [skeletonSearch, setSkeletonSearch] = useState();
+  const [albuns, setAlbuns] = useState([]);
   const [isDisable, setIsDisable] = useState(true);
 
-  function handleChange({ target }) {
-    setSearchData(() => ({ ...searchData, [target.name]: target.value }));
-    if (target.value.length > 2) {
-      setIsDisable(false);
-    } else {
-      setIsDisable(true);
-    }
+  const userData = useFetchUserData();
+
+  useEffect(() => {
+    const fetchAlbuns = async () => {
+      const result = await searchAlbumsAPI(searchData.searchInput);
+      setTimeout(() => {
+        setSkeletonSearch(false);
+        return setAlbuns(result);
+      }, 2000);
+    };
+    fetchAlbuns();
+  }, [searchData.searchInput]);
+
+  async function handleSearch(event) {
+    setSkeletonSearch(true);
+    const {
+      target: { searchInput },
+    } = event;
+    event.preventDefault();
+    setSearchData(() => ({ [searchInput.name]: searchInput.value }));
   }
 
-  function handleSearch() {}
+  function handleChange({ target }) {
+    if (target.value.length > 2) {
+      return setIsDisable(false);
+    }
+    return setIsDisable(true);
+  }
 
   return (
-    <div className="h-screen flex flex-col items-center">
+    <div className="h-screen flex flex-col items-center w-screen">
       {!userData ? (
         <SkeletonHeader />
       ) : (
@@ -39,19 +61,36 @@ export default function Search() {
                 name="searchInput"
                 placeholder="Artista ou Album"
                 id="searchInput"
-                value={searchData.searchInput}
                 onChange={handleChange}
               />
               <BsSearch className="w-1/12" />
             </div>
             <button
               className="w-1/4 h-12 bg-blue-400 ml-4 mb-12 shadow-md text-slate-500 font-bold border rounded-lg disabled:cursor-not-allowed disabled:bg-gray-100 enabled:border-2 enabled:border-blue-400 enabled:text-white hover:bg-blue-300"
-              type="button"
+              type="submit"
               disabled={isDisable}
             >
               Pesquisar
             </button>
           </form>
+          {skeletonSearch && (
+            <div
+              id="albuns-section"
+              className="flex flex-row flex-wrap items-center justify-center w-full space-x-6 space-y-6"
+            >
+              <SkeletonCard />
+            </div>
+          )}
+          {albuns && !skeletonSearch && (
+            <div
+              id="albuns-section"
+              className="flex flex-row flex-wrap justify-center w-full space-x-6 space-y-6"
+            >
+              {albuns.map((alb) => (
+                <AlbumCard data={alb} key={alb.collectionId} />
+              ))}
+            </div>
+          )}
         </>
       )}
     </div>

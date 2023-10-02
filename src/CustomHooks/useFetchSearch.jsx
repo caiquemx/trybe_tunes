@@ -7,10 +7,10 @@ export default function useFetchSearch(searchString) {
   useEffect(() => {
     const fetchAlbuns = async () => {
       const result = await searchAlbumsAPI(searchString);
-      setData(result);
+      setTimeout(() => setData(result), 2000);
     };
     fetchAlbuns();
-  }, []);
+  }, [searchString]);
 
   return data;
 }
