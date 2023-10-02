@@ -18,6 +18,8 @@ export default function Search() {
     }
   }
 
+  function handleSearch() {}
+
   return (
     <div className="h-screen flex flex-col items-center">
       {!userData ? (
@@ -26,8 +28,9 @@ export default function Search() {
         <>
           <Header className="h-1/4" page={"search"} userName={userData.name} />
           <form
-            id="search-form"
+            onSubmit={handleSearch}
             className="h-3/4 flex flex-row w-1/2 justify-center items-center"
+            id="search-form"
           >
             <div className="w-3/4 flex flex-row justify-center items-center border border-1 border-gray-400 mb-12 rounded-lg">
               <input
