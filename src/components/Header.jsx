@@ -9,9 +9,9 @@ import { useEffect, useState } from "react";
 export default function Header({ page, userName }) {
   const navigate = useNavigate();
   const selected =
-    "bg-blue-100 text-black hover:cursor-pointer hover:bg-transparent flex w-1/3 h-full bg-blue-400 justify-center items-center";
+    "bg-blue-100 text-black hover:cursor-pointer hover:bg-transparent flex w-1/3 h-full bg-blue-300 justify-center items-center text-xl";
   const style =
-    "hover:bg-transparent hover:text-black hover:cursor-pointer flex w-1/3 h-full bg-blue-400 justify-center items-center";
+    "hover:bg-transparent text-xl hover:text-black hover:cursor-pointer flex w-1/3 h-full bg-blue-400 justify-center items-center";
 
   const [classState, setClassState] = useState({
     home: style,

@@ -87,7 +87,7 @@ export default function Search() {
               className="flex flex-row flex-wrap justify-center w-full space-x-6 space-y-6"
             >
               {albuns.map((alb) => (
-                <AlbumCard data={alb} key={alb.collectionId} />
+                <AlbumCard data={alb} key={alb.collectionId} search={true} />
               ))}
             </div>
           )}
